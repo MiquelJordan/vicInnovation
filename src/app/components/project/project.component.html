@@ -1,0 +1,49 @@
+<mat-card style="background-color:dimgrey; height: 800px;">
+
+  <mat-card>
+    <div fxLayout="row " fxLayoutAlign="center center ">
+      <h2>Creer une nouvelle construction</h2>
+    </div>
+    <form [formGroup]="constructionForm" (ngSubmit)="onSubmitForm()">
+
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+
+        <mat-form-field>
+          <input formControlName="constructionName" matInput placeholder="Nom de la construction">
+        </mat-form-field>
+
+        <mat-form-field style="width:30% ;">
+          <textarea formControlName="constructionDescription" matInput placeholder="Description "></textarea>
+        </mat-form-field>
+
+
+
+        <mat-form-field style="width:17% ;">
+          <mat-select formControlName="constructionType" (value)="selected" placeholder="Type de la construction ">
+            <mat-option value="batiment">Batiment</mat-option>
+            <mat-option value="etage">Etage</mat-option>
+            <mat-option value="appartement">Appartement</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary">Ajouter la construction au projet</button>
+
+      </div>
+    </form>
+  </mat-card>
+
+  <mat-card fxLayout="row" fxLayoutAlign="space-around none">
+    <h3>Nom des constructions : </h3>
+    <h3 style="width: 50%; margin-top: 0px"> Description des construction:</h3>
+  </mat-card>
+  <mat-list *ngFor='let construction of constructionCreated ' style="border: black ">
+    <mat-card fxLayout="row" fxLayoutAlign="space-around center">
+      <h2>{{construction.constructionName}}</h2>
+      <h2>{{construction.constructionType}}</h2>
+      <button mat-raised-button color="primary" [routerLink]="['/app/project',construction.projectID,construction.constructionType,construction.id]">Voir la construction</button>
+      <h3 style="width: 50%;"> {{construction.constructionDescription}}</h3>
+    </mat-card>
+  </mat-list>
+
+
+</mat-card>

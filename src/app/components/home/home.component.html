@@ -1,0 +1,53 @@
+<mat-card style="background-color:dimgrey; height: 800px;">
+
+  <mat-accordion>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header style="width: 20%;padding-left: 42% ">
+        <div fxLayout="row " fxLayoutAlign="center center ">
+          <mat-panel-title fxLayout="row " fxLayoutAlign="center center ">
+            <h4> Creer un nouveau projet</h4>
+          </mat-panel-title>
+        </div>
+      </mat-expansion-panel-header>
+
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmitForm()">
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+
+          <mat-form-field>
+            <input matInput formControlName="projectName" placeholder="Nom du projet">
+          </mat-form-field>
+
+          <mat-form-field style="width:30% ;">
+            <textarea matInput formControlName="projectDescription" placeholder="Description "></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <button type="submit" mat-raised-button color="primary">Valider</button>
+        </div>
+      </form>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+  <mat-card fxLayout="row" fxLayoutAlign="space-around none">
+    <h3>Nom des projets : </h3>
+    <h3 style="width: 50%; margin-top: 0px"> Description des projets:</h3>
+  </mat-card>
+  <mat-list *ngFor='let project of projectsCreated ' style="border: black ">
+    <mat-card fxLayout="row" fxLayoutAlign="space-around center">
+      <h2>{{project.projectName}}</h2>
+
+      <h3 style="width: 50%;"> {{project.projectDescription}}</h3>
+
+      <button mat-raised-button color='primary' [routerLink]="['/app/project', project.id]">Voir le projet</button>
+    </mat-card>
+  </mat-list>
+
+
+
+
+
+</mat-card>

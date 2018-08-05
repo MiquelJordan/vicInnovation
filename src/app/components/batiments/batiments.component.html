@@ -1,0 +1,37 @@
+<mat-card style="background-color:dimgrey; height: 900px;">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <a routerLink='/app/home'>Home</a>
+    <h3>></h3>
+    <a [routerLink]="['/app/project',projectId]">Projets</a>
+  </div>
+  <mat-card>
+    <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+
+
+      <mat-tab backgroundColor='primary' disabled>
+        <ng-template mat-tab-label>
+          <button color='primary' mat-raised-button label="+" (click)="addTab()">
+            <h2>+</h2>
+          </button>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab *ngFor="let etage of etages; let index = index">
+
+        <ng-template matTabLabel>
+          <h3 style="margin-right:30%">{{etage.name}}</h3>
+          <button color="primary" mat-mini-fab [disabled]="etages.length === 1" (click)="removeTab(index)">X</button>
+
+
+        </ng-template>
+
+        <app-appartements [etageId]="etage.etageId"></app-appartements>
+
+      </mat-tab>
+
+    </mat-tab-group>
+  </mat-card>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button color="primary" [routerLink]="['/app/project',projectId]" mat-raised-button>Retour au projet</button>
+  </div>
+</mat-card>
